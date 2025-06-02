@@ -1,14 +1,14 @@
-const express = require("express");
-const { chromium } = require("playwright");
+import express from 'express';
+import { chromium } from 'playwright';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/getdata", async (req, res) => {
-    const browser = await chromium.launch({ headless: true });
+app.get('/getdata', async (req, res) => {
+    const browser = await chromium.launch();
     const page = await browser.newPage();
 
-    await page.goto("https://esinad.minedu.gob.pe/e_sinadmed_1/resolucionesexternas/consultanormas.aspx");
+    await page.goto('https://esinad.minedu.gob.pe/e_sinadmed_1/resolucionesexternas/consultanormas.aspx');
 
     await page.fill('#ctl00_ContentPlaceHolder1_txtNumResol', '077-2025-MINEDU');
     await page.fill('#ctl00_ContentPlaceHolder1_txtFechaDesde', '01/02/2025');
@@ -23,5 +23,5 @@ app.get("/getdata", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
