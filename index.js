@@ -26,8 +26,13 @@ app.get('/getdata', async (req, res) => {
         //     document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaHasta').value = to;
         // }, { from, to });
 
-        await page.fill('#ctl00_ContentPlaceHolder1_txtFechaDesde', from);
-        await page.fill('#ctl00_ContentPlaceHolder1_txtFechaHasta', to);
+        await page.click('#ctl00_ContentPlaceHolder1_txtFechaDesde');
+        await page.keyboard.type(from);
+        await page.click('#ctl00_ContentPlaceHolder1_txtFechaHasta');
+        await page.keyboard.type(to);
+
+        // await page.fill('#ctl00_ContentPlaceHolder1_txtFechaDesde', from);
+        // await page.fill('#ctl00_ContentPlaceHolder1_txtFechaHasta', to);
         await page.click('#ctl00_ContentPlaceHolder1_ibtnBuscar');
         await page.waitForTimeout(3000); // đợi kết quả
 
