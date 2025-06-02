@@ -4,6 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "postinstall": "playwright install",
     "start": "node index.js"
   },
   "dependencies": {
