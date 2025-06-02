@@ -1,11 +1,7 @@
-FROM mcr.microsoft.com/playwright/python:v1.52.0-jammy
+FROM mcr.microsoft.com/playwright/node:v1.52.0-jammy
 
 WORKDIR /app
-
 COPY . .
-
-RUN pip install -r requirements.txt
-
-CMD ["python", "main.py"]
-
-
+RUN npm install
+EXPOSE 3000
+CMD ["node", "index.js"]
