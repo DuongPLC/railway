@@ -21,10 +21,11 @@ app.get('/getdata', async (req, res) => {
         await page.goto('https://esinad.minedu.gob.pe/e_sinadmed_1/resolucionesexternas/consultanormas.aspx', { waitUntil: 'load' });
 
         await page.fill('#ctl00_ContentPlaceHolder1_txtNumResol', num);
-        await page.evaluate((from, to) => {
+        await page.evaluate(({ from, to }) => {
             document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaDesde').value = from;
             document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaHasta').value = to;
-        }, from, to);
+        }, { from, to });
+
         // await page.fill('#ctl00_ContentPlaceHolder1_txtFechaDesde', from);
         // await page.fill('#ctl00_ContentPlaceHolder1_txtFechaHasta', to);
         await page.click('#ctl00_ContentPlaceHolder1_ibtnBuscar');
