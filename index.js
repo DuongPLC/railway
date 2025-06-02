@@ -21,17 +21,17 @@ app.get('/getdata', async (req, res) => {
         await page.goto('https://esinad.minedu.gob.pe/e_sinadmed_1/resolucionesexternas/consultanormas.aspx', { waitUntil: 'load' });
 
         await page.fill('#ctl00_ContentPlaceHolder1_txtNumResol', num);
-        // await page.evaluate(({ from, to }) => {
-        //     document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaDesde').value = from;
-        //     document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaHasta').value = to;
-        // }, { from, to });
+        await page.evaluate(({ from, to }) => {
+            document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaHasta').value = to;
+            document.querySelector('#ctl00_ContentPlaceHolder1_txtFechaDesde').value = from;
+        }, { to, from });
         // await page.click('#ctl00_ContentPlaceHolder1_txtFechaHasta');
         // await page.keyboard.type(to);
         // await page.click('#ctl00_ContentPlaceHolder1_txtFechaDesde');
         // await page.keyboard.type(from);
 
-        await page.fill('#ctl00_ContentPlaceHolder1_txtFechaHasta', to);
-        await page.fill('#ctl00_ContentPlaceHolder1_txtFechaDesde', from);
+        // await page.fill('#ctl00_ContentPlaceHolder1_txtFechaHasta', to);
+        // await page.fill('#ctl00_ContentPlaceHolder1_txtFechaDesde', from);
 
         await page.click('#ctl00_ContentPlaceHolder1_ibtnBuscar');
         await page.waitForTimeout(3000); // đợi kết quả
